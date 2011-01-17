@@ -2,17 +2,13 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <title>SVG US map, with plottable lat,lng. made with Raphael.js</title>
 
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load("jquery", "1.4.4");
-  </script>
-
   <script type="text/javascript" charset="utf-8" src='raphael.js'></script>
   <script type="text/javascript" charset="utf-8" src='raphael.scale.js'></script>
   <script type="text/javascript" charset="utf-8" src='g.raphael.js'></script>
   <script type="text/javascript" charset="utf-8" src='../usmap.js'></script>
   <style type="text/css" media="screen">
-    body {font-family: helvetica,arial,sans-serif;}
+    body {font-family: helvetica,arial,sans-serif;} 
+    a { color: #666;}
   </style>
 </head>
 
@@ -23,142 +19,117 @@
   <script type="text/javascript" charset="utf-8">
     var map, paper, pageWidth=800;
 
-    $(function() {
+    var drawIt = function() {
       paper = new ScaleRaphael('plot-map-container', 950, 650);
       map = paper.USMap();
       paper.scaleAll(pageWidth/map.width);
 
-      map.plot(38.646908,-90.205994, "St. Louis, MO");
-      map.darkenState('MO', 0.07);
-      map.plot(35.101934,-106.633301, "Albuquerque, NM");
-      map.darkenState('NM', 0.07);
-      map.plot(29.969212,-90.065918, "New Orleans, LA");
-      map.darkenState('LA', 0.07);
-      map.plot(40.717079,-74.00116, "New York, NY");
-      map.darkenState('NY', 0.07);
-      map.plot(41.879786,-87.62352, "Chicago, IL");
-      map.darkenState('IL', 0.07);
-      map.plot(40.380028,-105.516815, "Estes Park, CO");
-      map.darkenState('CO', 0.07);
-      map.plot(45.52463,-122.67334, "Portland, OR");
-      map.darkenState('OR', 0.07);
-      map.plot(47.603154,-122.333107, "Seattle, WA");
-      map.darkenState('WA', 0.07);
-      map.plot(42.05745,-70.185471, "p-town");
-      map.darkenState('MA', 0.07);
+      var points = [
+      [19.493204, -154.8199569, "Pahoa, HI", "HI"],
+      [20.0230556, -155.6716667, "Kamuela, HI", "HI"],
+      [20.7540039, -155.986128, "Hana, HI", "HI"],
+      [20.8267586, -156.9179665, "Lanai City, HI", "HI"],
+      [21.18109, -157.085183, "Ho‘olehua, HI", "HI"],
+      [21.306715, -157.85876, "Honolulu, HI", "HI"],
+      [21.9188889, -159.6222222, "MAKAWELI, HI", "HI"],
+      [24.5484874, -81.8033894, "Key West, FL", "FL"],
+      [26.0740857, -97.2078428, "Port Isabel, TX", "TX"],
+      [29.969212,-90.065918, "New Orleans, LA", "LA"],
+      [35.101934,-106.633301, "Albuquerque, NM", "NM"],
+      [37.792032, -122.394613, "San Francisco, CA", "CA"],
+      [38.839708,-104.82605, "Colorado Springs, CO", "CO"],
+      [38.934385, -74.908028, "Cape May, NJ", "NJ"],
+      [39.742042,-104.986725, "Denver, CO", "CO"],
+      [40.011576,-105.261726, "Boulder, CO", "CO"],
+      [40.244681,-109.012871, "Dinosaur, CO", "CO"],
+      [40.380028,-105.516815, "Estes Park, CO", "CO"],
+      [40.717079,-74.00116, "New York, NY", "NY"],
+      [41.879786,-87.62352, "Chicago, IL", "IL"],
+      [42.05745,-70.185471, "p-town", "MA"],
+      [42.32327,-72.634735, "Nortampton, MA", "MA"],
+      [42.3775671, -71.1054725, "Somerville, MA", "MA"],
+      [42.3775671, -71.1054725, "Somerville, MA", "MA"],
+      [42.711327,-73.201733, "Williamstown, MA", "MA"],
+      [45.52463,-122.67334, "Portland, OR", "OR"],
+      [46.1671898, -123.9229278, "Warrenton, OR", "OR"],
+      [46.7899758, -92.1031069, "Duluth, MN", "MN"],
+      [47.603154,-122.333107, "Seattle, WA", "WA"],
+      [48.3678242, -124.6266492, "Neah Bay, WA", "WA"],
+      [48.9672138, -97.2448712, "Pembina, ND", "ND"],
+      [51.8513054, -176.6587421, "Adak, AK", "AK"],
+      [53.8888159, -166.545529, "Unalaska, AK", "AK"],
+      [55.1287963, -131.5777512, "Metlakatla, AK", "AK"],
+      [57.7957544, -152.3847609, "Kodiak, AK", "AK"],
+      [58.3022, -134.411, "Juneau, AK", "AK"],
+      [61.2108398, -149.9019557, "Anchorage, AK", "AK"],
+      [63.6942425, -170.4802502, "Savoonga, AK", "AK"],
+      [68.3469741, -166.7655243, "Point Hope, AK", "AK"],
+      [70.6366076, -160.0351213, "Wainwright, AK", "AK"],
+      [38.646908,-90.205994, "St. Louis, MO", "MO"],
+      [33.342432,-118.326273, 'avalon, CA', 'CA'],
+      [36.999065,-109.045218, 'four points', 'NM'],
+      [25.799891,-80.139771, 'Miami Beach, FL', 'FL']]
+      for(var i = 0; i < points.length; i++){
+        map.plot(points[i][0], points[i][1], points[i][2]);
+        map.darkenState(points[i][3], 0.07);
+      }
 
-      map.plot(42.711327,-73.201733, "Williamstown, MA");
-      map.darkenState('MA', 0.07);
+      
+    };
 
-      map.plot(42.32327,-72.634735, "Nortampton, MA");
-      map.darkenState('MA', 0.07);
-
-
-
-
-map.plot(38.839708,-104.82605, "Colorado Springs, CO");
-map.darkenState('CO', 0.07);
-map.plot(40.011576,-105.261726, "Boulder, CO");
-map.darkenState('CO', 0.07);
-map.plot(40.244681,-109.012871, "Dinosaur, CO");
-map.darkenState('CO', 0.07);
-
-
-
-      map.plot(39.742042,-104.986725, "Denver, CO");
-      map.darkenState('CO', 0.07);
-
-      map.plot(42.3775671, -71.1054725, "Somerville, MA");
-      map.darkenState('MA', 0.07);
-
-      map.plot(37.792032, -122.394613, "San Francisco, CA");
-      map.darkenState('CA', 0.07);
-
-      map.plot(24.5484874, -81.8033894, "Key West, FL");
-      map.darkenState('FL', 0.07);
-
-      map.plot(46.7899758, -92.1031069, "Duluth, MN");
-      map.darkenState('MN', 0.07);
-
-      map.plot(26.0740857, -97.2078428, "Port Isabel, TX");
-      map.darkenState('TX', 0.07);
-
-      map.plot(46.1671898, -123.9229278, "Warrenton, OR");
-      map.darkenState('OR', 0.07);
-
-      map.plot(42.3775671, -71.1054725, "Somerville, MA");
-      map.darkenState('MA', 0.07);
-
-      map.plot(68.3469741, -166.7655243, "Point Hope, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(38.934385, -74.908028, "Cape May, NJ");
-      map.darkenState('NJ', 0.07);
-
-      map.plot(48.9672138, -97.2448712, "Pembina, ND");
-      map.darkenState('ND', 0.07);
-
-      map.plot(61.2108398, -149.9019557, "Anchorage, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(48.3678242, -124.6266492, "Neah Bay, WA");
-      map.darkenState('WA', 0.07);
-
-      map.plot(51.8513054, -176.6587421, "Adak, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(21.9188889, -159.6222222, "MAKAWELI, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(19.493204, -154.8199569, "Pahoa, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(55.1287963, -131.5777512, "Metlakatla, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(21.306715, -157.85876, "Honolulu, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(63.6942425, -170.4802502, "Savoonga, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(57.7957544, -152.3847609, "Kodiak, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(70.6366076, -160.0351213, "Wainwright, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(53.8888159, -166.545529, "Unalaska, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(58.3022, -134.411, "Juneau, AK");
-      map.darkenState('AK', 0.07);
-
-      map.plot(20.0230556, -155.6716667, "Kamuela, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(20.7540039, -155.986128, "Hana, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(21.18109, -157.085183, "Ho‘olehua, HI");
-      map.darkenState('HI', 0.07);
-
-      map.plot(20.8267586, -156.9179665, "Lanai City, HI");
-      map.darkenState('HI', 0.07);
-    });
-
-  </script>
-  
-  <div>
-    <h2>sources</h2>
-    <p>
-      this project is built on: <a href="https://github.com/robflaherty/us-map-raphael">https://github.com/robflaherty/us-map-raphael</a> by <a href='http://twitter.com/#!/ravelrumba'>rob flaherty</a>
-    </p>
+    document.onload = drawIt();
     
-    <ul>
-      <li>SVG: <a href="http://commons.wikimedia.org/wiki/File:Blank_US_Map.svg">http://commons.wikimedia.org/wiki/File:Blank_US_Map.svg</a></li>
-      <li>SVG++:<a href="http://www.ravelrumba.com/code/demos/us-map-raphael/demo-animated.html">http://www.ravelrumba.com/code/demos/us-map-raphael/demo-animated.html</a></li>
-      <li>US coords math: <a href="http://commons.wikimedia.org/wiki/File:Usa_edcp_relief_location_map.png">http://commons.wikimedia.org/wiki/File:Usa_edcp_relief_location_map.png</a></li>
-      <li>Alaska coords math: <a href="http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html">http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html</a></li>
-    </ul>    
+    
+  </script>
+
+  <h2><a href="http://github.com/the55/usmap">Details / code</a></h2>
+
+  <h2>points plotted via javascript</h2>
+  <pre>
+    19.493204, -154.8199569, "Pahoa, HI"
+    20.0230556, -155.6716667, "Kamuela, HI"
+    20.7540039, -155.986128, "Hana, HI"
+    20.8267586, -156.9179665, "Lanai City, HI"
+    21.18109, -157.085183, "Ho‘olehua, HI"
+    21.306715, -157.85876, "Honolulu, HI"
+    21.9188889, -159.6222222, "MAKAWELI, HI"
+    24.5484874, -81.8033894, "Key West, FL"
+    26.0740857, -97.2078428, "Port Isabel, TX"
+    29.969212,-90.065918, "New Orleans, LA"
+    35.101934,-106.633301, "Albuquerque, NM"
+    37.792032, -122.394613, "San Francisco, CA"
+    38.839708,-104.82605, "Colorado Springs, CO"
+    38.934385, -74.908028, "Cape May, NJ"
+    39.742042,-104.986725, "Denver, CO"
+    40.011576,-105.261726, "Boulder, CO"
+    40.244681,-109.012871, "Dinosaur, CO"
+    40.380028,-105.516815, "Estes Park, CO"
+    40.717079,-74.00116, "New York, NY"
+    41.879786,-87.62352, "Chicago, IL"
+    42.05745,-70.185471, "p-town"
+    42.32327,-72.634735, "Nortampton, MA"
+    42.3775671, -71.1054725, "Somerville, MA"
+    42.3775671, -71.1054725, "Somerville, MA"
+    42.711327,-73.201733, "Williamstown, MA"
+    45.52463,-122.67334, "Portland, OR"
+    46.1671898, -123.9229278, "Warrenton, OR"
+    46.7899758, -92.1031069, "Duluth, MN"
+    47.603154,-122.333107, "Seattle, WA"
+    48.3678242, -124.6266492, "Neah Bay, WA"
+    48.9672138, -97.2448712, "Pembina, ND"
+    51.8513054, -176.6587421, "Adak, AK"
+    53.8888159, -166.545529, "Unalaska, AK"
+    55.1287963, -131.5777512, "Metlakatla, AK"
+    57.7957544, -152.3847609, "Kodiak, AK"
+    58.3022, -134.411, "Juneau, AK"
+    61.2108398, -149.9019557, "Anchorage, AK"
+    63.6942425, -170.4802502, "Savoonga, AK"
+    68.3469741, -166.7655243, "Point Hope, AK"
+    70.6366076, -160.0351213, "Wainwright, AK"
+    38.646908,-90.205994, "St. Louis, MO"
+    33.342432,-118.326273, 'avalon, CA'
+    36.999065,-109.045218, 'four points'
+    25.799891,-80.139771, 'Miame Beach, FL'
+  </pre>
+
 </body>
