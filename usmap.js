@@ -92,6 +92,7 @@ Raphael.fn.USMap = function(){
           if(popup) {popup.remove()};
         };
       }
+      return point;
     },
 
     colorState: function(state, color) {
