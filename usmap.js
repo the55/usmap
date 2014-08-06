@@ -86,7 +86,7 @@ Raphael.fn.USMap = function(){
       if(message) {
         point.node.onmouseover = function () {
           if(popup) {popup.remove()};
-          popup = paper.g.popup(coords[0], coords[1], message, (coords[0] > 750 ? 1 : 3));
+          popup = paper.popup(coords[0], coords[1], message, (coords[0] > 750 ? 'left' : 'right'));
         };
         point.node.onmouseout = function () {
           if(popup) {popup.remove()};
