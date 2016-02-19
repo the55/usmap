@@ -8,7 +8,7 @@ When this project was made, d3.js was young and unproven and had no good story f
 
 
 
-# [Javascript/SVG plottable US Map](http://the55.net/_11/sketch/us_map)
+# [Javascript/SVG plottable US Map](http://www.the55.net/_11/sketch/us_map)
 
 
 Requirements:
@@ -17,7 +17,7 @@ Requirements:
 * [gRaphael](http://g.raphaeljs.com/) - just for the mouseover tags
 * [ScaleRaphael](http://www.shapevent.com/scaleraphael/) - the scalability
 
-To get something like [demo page](http://the55.net/_11/sketch/us_map) use:
+To get something like [demo page](http://www.the55.net/_11/sketch/us_map) use:
 
     var yourIntendedMapWidth = 600;
     var container = 'dom-id-of-your-container-div';
