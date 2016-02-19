@@ -1,3 +1,13 @@
+# I recommend using d3
+
+When this project was made, d3.js was young and unproven and had no good story for doing maps. That has changed so much. These days, if you want to do data with a US map, consider using d3. Perhaps via...
+
+* http://datamaps.github.io/
+* https://d3-geomap.github.io/map/choropleth/us-states/
+* https://github.com/mbostock/d3/wiki/Geo-Projections
+
+
+
 # [Javascript/SVG plottable US Map](http://the55.net/_11/sketch/us_map)
 
 
